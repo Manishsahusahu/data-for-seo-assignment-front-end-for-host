@@ -21,27 +21,27 @@ function App() {
     return true;
   };
 
-  const handleClick = async function () {
-    if (enteredUrl === "") {
-      console.log("Input url is empty!");
-      return;
-    }
-    setTimer(35);
-    console.log("entered url is ", enteredUrl);
-    const dataResponse = await getSeoData(enteredUrl);
-    console.log("dataResponse is", dataResponse);
-    // // localStorage.setItem("seoData", JSON.stringify(dataResponse));
-    // const dataResponse = JSON.parse(localStorage.getItem("seoData"));
-    console.log(dataResponse);
-    const data = dataResponse.data.data[0].result[0];
+  // const handleClick = async function () {
+  //   if (enteredUrl === "") {
+  //     console.log("Input url is empty!");
+  //     return;
+  //   }
+  //   setTimer(35);
+  //   console.log("entered url is ", enteredUrl);
+  //   const dataResponse = await getSeoData(enteredUrl);
+  //   console.log("dataResponse is", dataResponse);
+  //   // // localStorage.setItem("seoData", JSON.stringify(dataResponse));
+  //   // const dataResponse = JSON.parse(localStorage.getItem("seoData"));
+  //   console.log(dataResponse);
+  //   const data = dataResponse.data.data[0].result[0];
 
-    setmetricsResponse(data.page_metrics);
-    setDomainInfo(data.domain_info);
-    setDomainInfoChecks(data.domain_info.checks);
-    setDomainSSL(data.domain_info.ssl_info);
-    setChecks(data.page_metrics.checks);
-    console.log(data);
-  };
+  //   setmetricsResponse(data.page_metrics);
+  //   setDomainInfo(data.domain_info);
+  //   setDomainInfoChecks(data.domain_info.checks);
+  //   setDomainSSL(data.domain_info.ssl_info);
+  //   setChecks(data.page_metrics.checks);
+  //   console.log(data);
+  // };
 
   useEffect(() => {
     const time = setInterval(() => {
@@ -88,7 +88,7 @@ function App() {
             <div className=""></div>
             <div className="">
               <button
-                onClick={handleClick}
+                // onClick={handleClick}
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
               >
@@ -97,7 +97,7 @@ function App() {
             </div>
           </div>
         </form>
-        <div>{enteredUrl === "" ? <h3>Kindly enter the URL</h3> : ""}</div>
+        {/* <div>{enteredUrl === "" ? <h3>Kindly enter the URL</h3> : ""}</div>
         <div>{timer >= 0 ? waitString : ""}</div>
         {timer < 0 && (
           <div>
@@ -110,7 +110,7 @@ function App() {
             <DataShow response={metricsResponse} heading={"Page metrics:"} />
             <DataShow response={checks} heading={"Page metrics checks:"} />
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
