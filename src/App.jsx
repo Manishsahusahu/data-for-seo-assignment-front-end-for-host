@@ -1,25 +1,25 @@
-import "./App.css";
-import getSeoData from "./api calls/getSeoData";
-import { useEffect, useState } from "react";
-import DataShow from "./components/DataShow";
+// import "./App.css";
+// import getSeoData from "./api calls/getSeoData";
+// import { useEffect, useState } from "react";
+// import DataShow from "./components/DataShow";
 
 function App() {
-  const [metricsResponse, setmetricsResponse] = useState(null);
-  const [checks, setChecks] = useState(null);
-  const [domainInfo, setDomainInfo] = useState(null);
-  const [domainInfoChecks, setDomainInfoChecks] = useState(null);
-  const [domainSSL, setDomainSSL] = useState(null);
-  const [enteredUrl, setEnteredUrl] = useState("");
-  const [timer, setTimer] = useState(-1);
+  // const [metricsResponse, setmetricsResponse] = useState(null);
+  // const [checks, setChecks] = useState(null);
+  // const [domainInfo, setDomainInfo] = useState(null);
+  // const [domainInfoChecks, setDomainInfoChecks] = useState(null);
+  // const [domainSSL, setDomainSSL] = useState(null);
+  // const [enteredUrl, setEnteredUrl] = useState("");
+  // const [timer, setTimer] = useState(-1);
 
-  const handleChange = function (e) {
-    setEnteredUrl(e.target.value);
-    console.log(enteredUrl);
-  };
+  // const handleChange = function (e) {
+  //   setEnteredUrl(e.target.value);
+  //   console.log(enteredUrl);
+  // };
 
-  const checkInputUrl = function () {
-    return true;
-  };
+  // const checkInputUrl = function () {
+  //   return true;
+  // };
 
   // const handleClick = async function () {
   //   if (enteredUrl === "") {
@@ -43,26 +43,27 @@ function App() {
   //   console.log(data);
   // };
 
-  useEffect(() => {
-    const time = setInterval(() => {
-      setTimer(timer - 1);
-    }, 1000);
+  // useEffect(() => {
+  //   const time = setInterval(() => {
+  //     setTimer(timer - 1);
+  //   }, 1000);
 
-    return () => {
-      clearInterval(time);
-    };
-  }, [timer]);
+  //   return () => {
+  //     clearInterval(time);
+  //   };
+  // }, [timer]);
 
-  const waitString = (
-    <h3 className="font-bold text-center">
-      Wait <span className="text-2xl">{timer}</span> seconds! Results are being
-      prepared...
-    </h3>
-  );
+  // const waitString = (
+  //   <h3 className="font-bold text-center">
+  //     Wait <span className="text-2xl">{timer}</span> seconds! Results are being
+  //     prepared...
+  //   </h3>
+  // );
 
   return (
     <>
-      <div className="flex flex-col min-h-screen justify-center items-center">
+      checking app
+      {/* <div className="flex flex-col min-h-screen justify-center items-center">
         <form className="w-full m-5 flex flex-col justify-center items-center">
           <div className="flex flex-col justify-center items-center mb-6">
             <div className="">
@@ -88,7 +89,7 @@ function App() {
             <div className=""></div>
             <div className="">
               <button
-                // onClick={handleClick}
+                onClick={handleClick}
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
               >
@@ -97,7 +98,7 @@ function App() {
             </div>
           </div>
         </form>
-        {/* <div>{enteredUrl === "" ? <h3>Kindly enter the URL</h3> : ""}</div>
+        <div>{enteredUrl === "" ? <h3>Kindly enter the URL</h3> : ""}</div>
         <div>{timer >= 0 ? waitString : ""}</div>
         {timer < 0 && (
           <div>
@@ -110,8 +111,8 @@ function App() {
             <DataShow response={metricsResponse} heading={"Page metrics:"} />
             <DataShow response={checks} heading={"Page metrics checks:"} />
           </div>
-        )} */}
-      </div>
+        )}
+      </div> */}
     </>
   );
 }
