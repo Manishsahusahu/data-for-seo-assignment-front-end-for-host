@@ -1,69 +1,64 @@
-// import "./App.css";
-// import getSeoData from "./api calls/getSeoData";
-// import { useEffect, useState } from "react";
-// import DataShow from "./components/DataShow";
+import "./App.css";
+import getSeoData from "./api calls/getSeoData";
+import { useEffect, useState } from "react";
+import DataShow from "./components/DataShow";
 
 function App() {
-  // const [metricsResponse, setmetricsResponse] = useState(null);
-  // const [checks, setChecks] = useState(null);
-  // const [domainInfo, setDomainInfo] = useState(null);
-  // const [domainInfoChecks, setDomainInfoChecks] = useState(null);
-  // const [domainSSL, setDomainSSL] = useState(null);
-  // const [enteredUrl, setEnteredUrl] = useState("");
-  // const [timer, setTimer] = useState(-1);
+  const [metricsResponse, setmetricsResponse] = useState(null);
+  const [checks, setChecks] = useState(null);
+  const [domainInfo, setDomainInfo] = useState(null);
+  const [domainInfoChecks, setDomainInfoChecks] = useState(null);
+  const [domainSSL, setDomainSSL] = useState(null);
+  const [enteredUrl, setEnteredUrl] = useState("");
+  const [timer, setTimer] = useState(-1);
 
-  // const handleChange = function (e) {
-  //   setEnteredUrl(e.target.value);
-  //   console.log(enteredUrl);
-  // };
+  const handleChange = function (e) {
+    setEnteredUrl(e.target.value);
+    console.log(enteredUrl);
+  };
 
-  // const checkInputUrl = function () {
-  //   return true;
-  // };
+  const handleClick = async function () {
+    if (enteredUrl === "") {
+      console.log("Input url is empty!");
+      return;
+    }
+    setTimer(35);
+    console.log("entered url is ", enteredUrl);
+    const dataResponse = await getSeoData(enteredUrl);
+    console.log("dataResponse is", dataResponse);
+    // // localStorage.setItem("seoData", JSON.stringify(dataResponse));
+    // const dataResponse = JSON.parse(localStorage.getItem("seoData"));
+    console.log(dataResponse);
+    const data = dataResponse.data.data[0].result[0];
 
-  // const handleClick = async function () {
-  //   if (enteredUrl === "") {
-  //     console.log("Input url is empty!");
-  //     return;
-  //   }
-  //   setTimer(35);
-  //   console.log("entered url is ", enteredUrl);
-  //   const dataResponse = await getSeoData(enteredUrl);
-  //   console.log("dataResponse is", dataResponse);
-  //   // // localStorage.setItem("seoData", JSON.stringify(dataResponse));
-  //   // const dataResponse = JSON.parse(localStorage.getItem("seoData"));
-  //   console.log(dataResponse);
-  //   const data = dataResponse.data.data[0].result[0];
+    setmetricsResponse(data.page_metrics);
+    setDomainInfo(data.domain_info);
+    setDomainInfoChecks(data.domain_info.checks);
+    setDomainSSL(data.domain_info.ssl_info);
+    setChecks(data.page_metrics.checks);
+    console.log(data);
+  };
 
-  //   setmetricsResponse(data.page_metrics);
-  //   setDomainInfo(data.domain_info);
-  //   setDomainInfoChecks(data.domain_info.checks);
-  //   setDomainSSL(data.domain_info.ssl_info);
-  //   setChecks(data.page_metrics.checks);
-  //   console.log(data);
-  // };
+  useEffect(() => {
+    const time = setInterval(() => {
+      setTimer(timer - 1);
+    }, 1000);
 
-  // useEffect(() => {
-  //   const time = setInterval(() => {
-  //     setTimer(timer - 1);
-  //   }, 1000);
+    return () => {
+      clearInterval(time);
+    };
+  }, [timer]);
 
-  //   return () => {
-  //     clearInterval(time);
-  //   };
-  // }, [timer]);
-
-  // const waitString = (
-  //   <h3 className="font-bold text-center">
-  //     Wait <span className="text-2xl">{timer}</span> seconds! Results are being
-  //     prepared...
-  //   </h3>
-  // );
+  const waitString = (
+    <h3 className="font-bold text-center">
+      Wait <span className="text-2xl">{timer}</span> seconds! Results are being
+      prepared...
+    </h3>
+  );
 
   return (
     <>
-      checking app
-      {/* <div className="flex flex-col min-h-screen justify-center items-center">
+      <div className="flex flex-col min-h-screen justify-center items-center">
         <form className="w-full m-5 flex flex-col justify-center items-center">
           <div className="flex flex-col justify-center items-center mb-6">
             <div className="">
@@ -112,7 +107,7 @@ function App() {
             <DataShow response={checks} heading={"Page metrics checks:"} />
           </div>
         )}
-      </div> */}
+      </div>
     </>
   );
 }
